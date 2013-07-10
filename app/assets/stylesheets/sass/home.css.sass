@@ -1,5 +1,32 @@
+@import mixins.sass
+
 body
-  width: 960px
-  margin: 0 auto
-  h1
-    font-size: 70px
+  header
+    background-color: $black
+    .topbar
+      width: 960px
+      margin: 0 auto
+      padding: 15px 0
+      +clearfix
+      .logo
+        font-size: 25px
+        float: left
+        a
+          text-decoration: none
+          +link-colors($white, $white, $white, $white, $white)
+      .nav
+        float: right
+        margin-top: 10px
+        ul
+          +horizontal-list
+          li
+            margin-left: 15px
+            +link
+  #content
+    width: 960px
+    margin: 0 auto
+    a.button
+      margin: 20px auto
+      @include sassy-button("shiny", 10px, 19px, #4ba3cc)
+
+    

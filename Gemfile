@@ -10,6 +10,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.11.0'
   gem 'erb2haml'
+  gem 'factory_girl_rails', '4.1.0'
 end
 
 # Gems used only for assets and not required

@@ -1,8 +1,28 @@
 require 'spec_helper'
 
-describe "AuthenticationPages" do
+describe "Authentication" do
 
   subject {page}
+
+  describe "authorization" do
+
+    describe "for non-signed-in users" do
+      let(:user){FactoryGirl.create(:user)}
+
+      describe "in the Emoticons controller" do
+
+	describe "submitting to the create action" do
+          before{post emoticons_path}
+	  specify{response.should redirect_to(signin_path)}
+	end
+
+        describe "submitting to the destroy action" do
+	  before{delete emoticon_path(FactoryGirl.create(:emoticon))}
+	  specify{response.should redirect_to(signin_path)}
+	end
+      end
+    end
+  end
 
   describe "signin page" do
     before {visit signin_path}
@@ -25,7 +45,6 @@ describe "AuthenticationPages" do
 	it{should_not have_selector('div.alert-error')}
       end
     end
-
 
     describe "with valid information" do
       let(:user){FactoryGirl.create(:user)}

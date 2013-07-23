@@ -1,6 +1,7 @@
 Kaomoji::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :emoticons, only: [:create, :destroy]
 
   root :to => 'home#index'
   match '/signup', to: 'users#new'

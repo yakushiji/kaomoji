@@ -1,2 +1,11 @@
 - provide(:title, @user.name)
 %h1= @user.name
+.content
+- if @user.emoticons.any? 
+  %h3 Emoticons 
+  %p
+    = @user.emoticons.count
+  %ul.emoticons
+    = render @emoticons
+  = will_paginate @emoticons
+

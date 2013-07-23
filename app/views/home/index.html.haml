@@ -1,4 +1,10 @@
 - provide(:title, 'Home')
-%h1 かおもじ
-%p *:･✧⃛(ཽ๑ඕัළඕั๑)✧⃛*:･  ( ⌒⃘ཽ⃜ ◞ළ̆◟ ⌒⃘ཽ⃜ ) Շ"ਭ꒭ね~❤⃛
-= link_to "Sign up now!", signup_path, class: "button"
+- if signed_in?
+  %section
+    = render 'shared/user_info'
+  %section
+    = render 'shared/emoticon_form'
+- else
+  %h1 かおもじ
+  %p *:･✧⃛(ཽ๑ඕัළඕั๑)✧⃛*:･  ( ⌒⃘ཽ⃜ ◞ළ̆◟ ⌒⃘ཽ⃜ ) Շ"ਭ꒭ね~❤⃛
+  = link_to "Sign up now!", signup_path, class: "button"

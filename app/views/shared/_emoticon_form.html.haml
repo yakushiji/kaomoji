@@ -1,0 +1,5 @@
+= form_for(@emoticon) do |f|
+  = render 'shared/error_messages', object: f.object
+  .field
+    = f.text_area :content, placeholder: "Compose new emoticon..."
+  = f.submit "Post", class: "button"

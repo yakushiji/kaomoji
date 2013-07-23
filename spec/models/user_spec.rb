@@ -16,6 +16,8 @@ describe User do
 
   it {should respond_to(:remember_token)}
   it {should respond_to(:authenticate)}
+  it {should respond_to(:emoticons)}
+
 
   it {should be_valid}
   
@@ -104,4 +106,18 @@ describe User do
     before{@user.save}
     its(:remember_token){should_not be_blank}
   end
-end	
+
+  describe "emoticon associations" do
+    before{@user.save}
+    let!(:older_emoticon) do   
+      FactoryGirl.create(:emoticon, user: @user, created_at: 1.day.ago)		      
+    end
+    let!(:newer_emoticon) do
+      FactoryGirl.create(:emoticon, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right emoticon in the right order" do
+      @user.emoticons.should == [newer_emoticon, older_emoticon]
+    end
+  end
+end
